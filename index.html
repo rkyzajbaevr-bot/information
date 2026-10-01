@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #08090b;
+    color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* мягкое свечение фона */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    left: -150px;
+    background: rgba(120, 90, 255, .14);
+    filter: blur(130px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    right: -150px;
+    bottom: -150px;
+    background: rgba(0, 210, 255, .10);
+    filter: blur(130px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+
+/* страницы */
+
+.page {
+    max-width: 1150px;
+    min-height: calc(100vh - 100px);
+    margin: auto;
+    padding: 80px 30px;
+
+    animation: pageIn .6s ease;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-badge {
+    width: fit-content;
+    padding: 9px 15px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 100px;
+    background: rgba(255,255,255,.04);
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+.hero-badge span {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #8dffb0;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 12px #8dffb0;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: .98;
+    letter-spacing: -4px;
+    max-width: 900px;
+}
+
+.hero h1 strong {
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #8d8dff
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-text {
+    max-width: 570px;
+    color: #858585;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-top: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.main-btn,
+.second-btn {
+    padding: 15px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.main-btn {
+    background: #fff;
+    color: #08090b;
+}
+
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(255,255,255,.15);
+}
+
+.main-btn span,
+.contact-button span {
+    margin-left: 15px;
+}
+
+.second-btn {
+    border: 1px solid rgba(255,255,255,.12);
+    color: white;
+}
+
+.second-btn:hover {
+    background: rgba(255,255,255,.06);
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    color: #555;
+    font-size: 12px;
+}
+
+.scroll-hint span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #aaa;
+    margin-right: 8px;
+}
+
+
+/* заголовки */
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 50px;
+}
+
+.section-head h2 {
+    font-size: 52px;
+    letter-spacing: -2px;
+    margin-top: 10px;
+}
+
+.section-head > p {
+    color: #666;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.small-title {
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+
+/* SERVICES */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.service-card {
+    position: relative;
+    min-height: 270px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    background: rgba(255,255,255,.025);
+    overflow: hidden;
+    transition: .4s;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: -70px;
+    bottom: -70px;
+    background: #8d8dff;
+    filter: blur(90px);
+    opacity: 0;
+    transition: .4s;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,.18);
+    background: rgba(255,255,255,.045);
+}
+
+.service-card:hover::before {
+    opacity: .3;
+}
+
+.service-number {
+    color: #555;
+    font-size: 12px;
+}
+
+.service-icon {
+    font-size: 28px;
+    margin-top: 45px;
+    color: #aaa;
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.service-card p {
+    color: #707070;
+    line-height: 1.6;
+    max-width: 400px;
+    margin-top: 10px;
+}
+
+.service-arrow {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #555;
+}
+
+
+/* SKILLS */
+
+.skills-container {
+    max-width: 800px;
+}
+
+.skill {
+    margin-bottom: 30px;
+}
+
+.skill-top {
+    display: flex;
+    justify-content: space-between;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.skill-top span:last-child {
+    color: #555;
+}
+
+.skill-line {
+    width: 100%;
+    height: 4px;
+    background: #1a1b1f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-line div {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #8888ff
+    );
+    border-radius: inherit;
+    animation: skillLoad 1.2s ease;
+}
+
+@keyframes skillLoad {
+    from {
+        width: 0 !important;
+    }
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.skills-tags span {
+    padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 100px;
+    color: #777;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.skills-tags span:hover {
+    color: white;
+    border-color: rgba(255,255,255,.25);
+}
+
+
+/* CONTACT */
+
+.contact-box {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-box h2 {
+    font-size: clamp(45px, 7vw, 75px);
+    letter-spacing: -3px;
+    margin: 20px 0;
+}
+
+.contact-box h2 strong {
+    color: #777;
+}
+
+.contact-box p {
+    max-width: 500px;
+    color: #777;
+    line-height: 1.7;
+}
+
+.contact-button {
+    width: fit-content;
+    margin-top: 30px;
+    padding: 16px 22px;
+    background: white;
+    color: #08090b;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.contact-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255,255,255,.15);
+}
+
+
+/* FAQ */
+
+.faq-list {
+    max-width: 850px;
+}
+
+details {
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+
+details:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 25px 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary span {
+    color: #666;
+    font-size: 25px;
+    transition: .3s;
+}
+
+details[open] summary span {
+    transform: rotate(45deg);
+}
+
+details p {
+    color: #777;
+    line-height: 1.7;
+    padding: 0 5px 25px;
+    max-width: 700px;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+
+    .page {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .section-head {
+        display: block;
+    }
+
+    .section-head h2 {
+        font-size: 40px;
+    }
+
+    .section-head > p {
+        margin-top: 15px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+    }
+
+    .contact-box h2 {
+        letter-spacing: -2px;
+    }
+}
+</style>
+<body>
+    <!-- HOME -->
+<div id="home" class="page active">
+    <div class="hero">
+        <div class="hero-badge">
+            <span></span> Web Developer
+        </div>
+
+        <h1>
+            Создаю сайты,<br>
+            <strong>которые запоминаются.</strong>
+        </h1>
+
+        <p class="hero-text">
+            Современные сайты с продуманным дизайном,
+            плавными анимациями и удобным интерфейсом.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#services" class="main-btn">
+                Мои услуги <span>↗</span>
+            </a>
+
+            <a href="#contacts" class="second-btn">
+                Связаться
+            </a>
+        </div>
+
+        <div class="scroll-hint">
+            <span></span>
+            Листайте вниз
+        </div>
+    </div>
+</div>
+
+
+<!-- SERVICES -->
+<div id="services" class="page">
+
+    <div class="section-head">
+        <div>
+            <span class="small-title">01 — УСЛУГИ</span>
+            <h2>Что я делаю</h2>
+        </div>
+
+        <p>
+            От идеи до готового современного сайта.
+        </p>
+    </div>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="service-number">01</div>
+            <div class="service-icon">⌁</div>
+
+            <h3>Сайты</h3>
+            <p>
+                Создание современных сайтов
+                для бизнеса, проектов и личных брендов.
+            </p>
+
+            <span class="service-arrow">↗</span>
+        </div>
+
+        <div class="service-card">
+            <div class="service-number">02</div>
+            <div class="service-icon">◈</div>
+
+            <h3>Дизайн</h3>
+            <p>
+                Чистый и современный интерфейс,
+                который удобно использовать.
+            </p>
+
+            <span class="service-arrow">↗</span>
+        </div>
+
+        <div class="service-card">
+            <div class="service-number">03</div>
+            <div class="service-icon">◌</div>
+
+            <h3>Анимации</h3>
+            <p>
+                Плавные переходы и интерактивные
+                элементы без лишней перегруженности.
+            </p>
+
+            <span class="service-arrow">↗</span>
+        </div>
+
+        <div class="service-card">
+            <div class="service-number">04</div>
+            <div class="service-icon">⌘</div>
+
+            <h3>Доработка</h3>
+            <p>
+                Улучшение существующих сайтов,
+                исправление ошибок и добавление функций.
+            </p>
+
+            <span class="service-arrow">↗</span>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- SKILLS -->
+<div id="skills" class="page">
+
+    <div class="section-head">
+        <div>
+            <span class="small-title">02 — НАВЫКИ</span>
+            <h2>Инструменты</h2>
+        </div>
+    </div>
+
+    <div class="skills-container">
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>HTML</span>
+                <span>90%</span>
+            </div>
+
+            <div class="skill-line">
+                <div style="width:90%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>CSS</span>
+                <span>90%</span>
+            </div>
+
+            <div class="skill-line">
+                <div style="width:90%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>JavaScript</span>
+                <span>65%</span>
+            </div>
+
+            <div class="skill-line">
+                <div style="width:65%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>UI / UX</span>
+                <span>80%</span>
+            </div>
+
+            <div class="skill-line">
+                <div style="width:80%"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="skills-tags">
+        <span>Responsive</span>
+        <span>Animations</span>
+        <span>Modern UI</span>
+        <span>Landing Pages</span>
+        <span>Web Design</span>
+    </div>
+</div>
+
+
+<!-- CONTACTS -->
+<div id="contacts" class="page">
+
+    <div class="contact-box">
+
+        <span class="small-title">03 — КОНТАКТЫ</span>
+
+        <h2>
+            Есть идея?<br>
+            <strong>Давайте обсудим.</strong>
+        </h2>
+
+        <p>
+            Расскажите о своём проекте — обсудим,
+            что можно сделать и как это реализовать.
+        </p>
+
+        <a href="https://t.me/Francenj" class="contact-button">
+            Telegram <span>↗</span>
+        </a>
+
+    </div>
+</div>
+
+
+<!-- FAQ -->
+<div id="faq" class="page">
+
+    <div class="section-head">
+        <div>
+            <span class="small-title">04 — FAQ</span>
+            <h2>Частые вопросы</h2>
+        </div>
+    </div>
+
+    <div class="faq-list">
+
+        <details>
+            <summary>
+                Сколько стоит сайт?
+                <span>+</span>
+            </summary>
+
+            <p>
+                Стоимость зависит от сложности проекта,
+                количества страниц и необходимого функционала.
+            </p>
+        </details>
+
+        <details>
+            <summary>
+                Сколько занимает разработка?
+                <span>+</span>
+            </summary>
+
+            <p>
+                Срок зависит от проекта. Небольшой лендинг
+                можно сделать значительно быстрее большого сайта.
+            </p>
+        </details>
+
+        <details>
+            <summary>
+                Можно ли сделать сайт под телефон?
+                <span>+</span>
+            </summary>
+
+            <p>
+                Да. Сайт адаптируется под компьютеры,
+                планшеты и смартфоны.
+            </p>
+        </details>
+
+        <details>
+            <summary>
+                Можно ли изменить готовый сайт?
+                <span>+</span>
+            </summary>
+
+            <p>
+                Да, можно изменить дизайн, добавить новые
+                блоки, анимации и необходимый функционал.
+            </p>
+        </details>
+
+    </div>
+</div>
+</body>
+</html>
