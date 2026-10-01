@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Visitka</title>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -478,6 +478,153 @@ details p {
         letter-spacing: -2px;
     }
 }
+.portfolio-section,
+.process-section {
+    margin-top: 100px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.project-card {
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,.025);
+    transition: .4s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,255,255,.2);
+}
+
+.project-preview {
+    height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 40%,
+        rgba(130,120,255,.3),
+        transparent 45%),
+        #0d0e12;
+
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.project-preview.second {
+    background:
+        radial-gradient(circle at 30% 50%,
+        rgba(0,210,255,.18),
+        transparent 45%),
+        #0d0e12;
+}
+
+.project-info {
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-info h3 {
+    font-size: 19px;
+}
+
+.project-info p {
+    color: #666;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.project-info a {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.project-info a:hover {
+    background: white;
+    color: black;
+    transform: rotate(45deg);
+}
+
+
+/* PROCESS */
+
+.process-list {
+    max-width: 850px;
+}
+
+.process-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 25px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    transition: .3s;
+}
+
+.process-item:last-child {
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.process-item > span {
+    color: #555;
+    font-size: 13px;
+}
+
+.process-item h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.process-item p {
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.process-item:hover {
+    padding-left: 12px;
+}
+
+.process-item:hover > span {
+    color: #fff;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-preview {
+        height: 250px;
+    }
+
+    .process-item {
+        grid-template-columns: 45px 1fr;
+        gap: 15px;
+    }
+}
 </style>
 <body>
     <!-- HOME -->
@@ -585,7 +732,98 @@ details p {
 
     </div>
 </div>
+<section class="portfolio-section">
 
+    <div class="section-head">
+        <div>
+            <span class="small-title">02 — ПОРТФОЛИО</span>
+            <h2>Мои работы</h2>
+        </div>
+
+        <p>Несколько проектов, которые я создавал.</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+        <div class="project-card">
+            <div class="project-preview">
+                <span>SVisuals</span>
+            </div>
+
+            <div class="project-info">
+                <div>
+                    <h3>SVisuals</h3>
+                    <p>Creative / Web Design</p>
+                </div>
+
+                <a href="#">↗</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-preview second">
+                <span>PROJECT 02</span>
+            </div>
+
+            <div class="project-info">
+                <div>
+                    <h3>Ваш проект</h3>
+                    <p>Landing Page</p>
+                </div>
+
+                <a href="#">↗</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<section class="process-section">
+
+    <div class="section-head">
+        <div>
+            <span class="small-title">03 — ПРОЦЕСС</span>
+            <h2>Как я работаю</h2>
+        </div>
+    </div>
+
+    <div class="process-list">
+
+        <div class="process-item">
+            <span>01</span>
+            <div>
+                <h3>Обсуждаем идею</h3>
+                <p>Разбираемся, какой сайт вам нужен и какие задачи он должен решать.</p>
+            </div>
+        </div>
+
+        <div class="process-item">
+            <span>02</span>
+            <div>
+                <h3>Создаю дизайн</h3>
+                <p>Продумываю структуру, внешний вид и удобство интерфейса.</p>
+            </div>
+        </div>
+
+        <div class="process-item">
+            <span>03</span>
+            <div>
+                <h3>Разрабатываю</h3>
+                <p>Переношу дизайн в рабочий сайт с адаптацией под разные устройства.</p>
+            </div>
+        </div>
+
+        <div class="process-item">
+            <span>04</span>
+            <div>
+                <h3>Показываю результат</h3>
+                <p>Проверяем готовый проект и при необходимости вносим изменения.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
 <!-- SKILLS -->
 <div id="skills" class="page">
